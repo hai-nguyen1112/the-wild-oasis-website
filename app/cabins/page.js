@@ -2,6 +2,9 @@ import CabinList from '@/app/_components/CabinList';
 import { Suspense } from 'react';
 import Loading from './loading';
 
+// Next.js caches the page that is rendered statically which may give us old data. To prevent that, we need to set the period of revalidating of data to 0 in the page where we think the data can be changed overtime so that Next.js will always give us the latest data. If we set revalidate to 5 seconds, Next.js will revalidate the data every 5 seconds.
+// export const revalidate = 0;
+
 export const metadata = {
   title: 'Cabins',
 };

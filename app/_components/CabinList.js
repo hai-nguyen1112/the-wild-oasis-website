@@ -1,7 +1,11 @@
 import CabinCard from './CabinCard';
 import { getCabins } from '@/app/_lib/data-service';
+import { unstable_noStore as noStore } from 'next/cache';
 
 async function CabinList() {
+  // This is to prevent Next.js to cache the fetched cabins. Next.js Will fetch cabins everytime the user request the page
+  noStore();
+
   const cabins = await getCabins();
 
   if (!cabins.length) return null;

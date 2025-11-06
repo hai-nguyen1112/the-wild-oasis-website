@@ -11,6 +11,7 @@ const nextConfig = {
     ],
     qualities: [75],
   },
+  // output: "export",
 };
 
 export default nextConfig;
