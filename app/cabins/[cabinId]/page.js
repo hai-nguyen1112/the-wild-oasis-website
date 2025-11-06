@@ -1,4 +1,4 @@
-import { getCabin } from '@/app/_lib/data-service';
+import { getCabin, getCabins } from '@/app/_lib/data-service';
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 
@@ -6,6 +6,13 @@ export async function generateMetadata({ params }) {
   const { cabinId } = await params;
   const { name } = await getCabin(cabinId);
   return { title: `Cabin ${name}` };
+}
+
+// In Next.js, static rendering means the page is rendered during build and just waits to be sent to the browser. Dynamic rendering means the page is rendered upon user's request. Static rendering happens when Next.js knows everything about the route during build (the route doesn't have dynamic values such params, search params, e.g. localhost:3000/cabins). Dynamic rendering happens when the route has dynamic value, e.g. localhost:3000/cabins/2 which Next.js only knows when the user requests the route.
+// This is to provide Next.js the list of cabin ids so that Next.js can render the page for each cabin statically for better performance.
+export async function generateStaticParams() {
+  const cabins = await getCabins();
+  return cabins.map((cabin) => ({ cabinId: String(cabin.id) }));
 }
 
 export default async function Page({ params }) {
