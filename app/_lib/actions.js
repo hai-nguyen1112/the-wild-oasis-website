@@ -2,7 +2,7 @@
 'use server';
 
 import { auth, signIn, signOut } from './auth';
-import { updateGuest } from './data-service';
+import { deleteBooking, getBookings, updateGuest } from './data-service';
 import { revalidatePath } from 'next/cache';
 
 export async function updateProfile(formData) {
@@ -25,6 +25,22 @@ export async function updateProfile(formData) {
 
   // Revalidate the data of the current route so that the page will be updated with the updated data. We have to do this because Next.js caches data for dynamic pages for 30 seconds.
   revalidatePath('/account/profile');
+}
+
+export async function deleteReservation(bookingId) {
+  const session = await auth();
+  if (!session) throw new Error('You must be logged in');
+
+  const guestBookingIds = (await getBookings(session?.user?.guestId)).map(
+    (booking) => booking.id
+  );
+
+  if (!guestBookingIds.includes(bookingId))
+    throw new Error('You are not allowed to delete this reservation');
+
+  await deleteBooking(bookingId);
+
+  revalidatePath('/account/reservations');
 }
 
 export async function signInAction() {
