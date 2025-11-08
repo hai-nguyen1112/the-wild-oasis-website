@@ -1,9 +1,40 @@
 // This file is for server actions
 'use server';
 
+import { redirect } from 'next/navigation';
 import { auth, signIn, signOut } from './auth';
-import { deleteBooking, getBookings, updateGuest } from './data-service';
+import {
+  deleteBooking,
+  getBookings,
+  updateBooking,
+  updateGuest,
+} from './data-service';
 import { revalidatePath } from 'next/cache';
+
+export async function updateReservation(formData) {
+  const session = await auth();
+  if (!session) throw new Error('You must be logged in');
+
+  const guestBookingIds = (await getBookings(session?.user?.guestId)).map(
+    (booking) => booking.id
+  );
+
+  const bookingId = Number(formData.get('bookingId'));
+
+  if (!guestBookingIds.includes(bookingId))
+    throw new Error('You are not allowed to update this reservation');
+
+  const updateData = {
+    numGuests: Number(formData.get('numGuests')),
+    observations: formData.get('observations').slice(0, 1000),
+  };
+
+  await updateBooking(bookingId, updateData);
+
+  revalidatePath(`/account/reservations/edit/${bookingId}`);
+
+  redirect('/account/reservations');
+}
 
 export async function updateProfile(formData) {
   const session = await auth();
