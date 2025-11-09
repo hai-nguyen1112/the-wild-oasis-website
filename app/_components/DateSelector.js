@@ -47,6 +47,14 @@ function DateSelector({ settings, bookedDates, cabin }) {
           isPast(curDate) ||
           bookedDates.some((date) => isSameDay(date, curDate))
         }
+        styles={{
+          root: {
+            '--rdp-cell-size': '32px',
+            '--rdp-accent-color': '#C69963',
+            '--rdp-background-color': '#B78343',
+            margin: 0,
+          },
+        }}
       />
 
       <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">
