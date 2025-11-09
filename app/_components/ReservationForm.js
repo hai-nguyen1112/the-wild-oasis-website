@@ -31,7 +31,7 @@ function ReservationForm({ user, cabin, bookedDates }) {
   const createReservationWithData = createReservation.bind(null, bookingData);
 
   return (
-    <div className="scale-[1.01]">
+    <div className="scale-[1] flex flex-col">
       <div className="bg-primary-800 text-primary-300 px-16 py-2 flex justify-between items-center">
         <p>Logged in as</p>
 
@@ -55,7 +55,7 @@ function ReservationForm({ user, cabin, bookedDates }) {
             router.push(result?.redirectTo);
           }
         }}
-        className="bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col"
+        className="bg-primary-900 flex-1 py-10 px-16 text-lg flex gap-5 flex-col"
       >
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
