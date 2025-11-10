@@ -16,10 +16,14 @@ export default async function Page({ searchParams }) {
   const filter = capacity || 'all';
   return (
     <div>
-      <h1 className="text-4xl mb-5 text-accent-400 font-medium">
+      <h1
+        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl
+        mb-4 sm:mb-5 md:mb-6
+        text-accent-400 font-medium"
+      >
         Our Luxury Cabins
       </h1>
-      <p className="text-primary-200 text-lg mb-10">
+      <p className="text-base sm:text-lg text-primary-200 mb-6 sm:mb-8 md:mb-10">
         Cozy yet luxurious cabins, located right in the heart of the Italian
         Dolomites. Imagine waking up to beautiful mountain views, spending your
         days exploring the dark forests around, or just relaxing in your private

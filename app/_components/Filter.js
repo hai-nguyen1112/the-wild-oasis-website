@@ -16,7 +16,7 @@ function Filter() {
   }
 
   return (
-    <div className="border border-primary-800 flex">
+    <div className="border border-primary-800 flex flex-col sm530:flex-row whitespace-nowrap">
       <Button
         filter="all"
         handleFilter={handleFilter}

@@ -15,10 +15,7 @@ export default async function Page() {
   return (
     <div
       className="grid gap-12 text-lg items-center
-        grid-cols-1                /* default: 1 col */
-        md:grid-cols-2            /* 2 cols on tablets */
-        lg:grid-cols-5            /* original 5 cols on desktop */
-        lg:gap-x-24 lg:gap-y-32"
+        grid-cols-1 md:grid-cols-2 lg:grid-cols-5 lg:gap-x-24 lg:gap-y-32"
     >
       <div className="lg:col-span-3">
         <h1 className="text-2xl sm:text-3xl md:text-4xl mb-6 sm:mb-8 text-accent-400 font-medium">
