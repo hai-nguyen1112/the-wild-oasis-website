@@ -31,68 +31,70 @@ function DateSelector({ settings, bookedDates, cabin }) {
   const { minBookingLength, maxBookingLength } = settings;
 
   return (
-    <div className="flex flex-col justify-between">
-      <DayPicker
-        className="py-5 place-self-center"
-        mode="range"
-        onSelect={setRange}
-        selected={displayRange}
-        min={minBookingLength}
-        max={maxBookingLength}
-        startMonth={new Date()}
-        endMonth={new Date(new Date().getFullYear() + 5, 11)}
-        captionLayout="dropdown"
-        numberOfMonths={1}
-        disabled={(curDate) =>
-          isPast(curDate) ||
-          bookedDates.some((date) => isSameDay(date, curDate))
-        }
-        styles={{
-          root: {
-            '--rdp-cell-size': '32px',
-            '--rdp-accent-color': '#C69963',
-            '--rdp-background-color': '#B78343',
-            margin: 0,
-          },
-        }}
-      />
+    <div className="overflow-x-auto max-w-full">
+      <div className="flex flex-col justify-between min-w-[400px]">
+        <DayPicker
+          className="py-5 place-self-center"
+          mode="range"
+          onSelect={setRange}
+          selected={displayRange}
+          min={minBookingLength}
+          max={maxBookingLength}
+          startMonth={new Date()}
+          endMonth={new Date(new Date().getFullYear() + 5, 11)}
+          captionLayout="dropdown"
+          numberOfMonths={1}
+          disabled={(curDate) =>
+            isPast(curDate) ||
+            bookedDates.some((date) => isSameDay(date, curDate))
+          }
+          styles={{
+            root: {
+              '--rdp-cell-size': '32px',
+              '--rdp-accent-color': '#C69963',
+              '--rdp-background-color': '#B78343',
+              margin: 0,
+            },
+          }}
+        />
 
-      <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">
-        <div className="flex items-baseline gap-6">
-          <p className="flex gap-2 items-baseline">
-            {discount > 0 ? (
+        <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[80px]">
+          <div className="flex items-baseline gap-6">
+            <p className="flex gap-2 items-baseline">
+              {discount > 0 ? (
+                <>
+                  <span className="text-2xl">${regularPrice - discount}</span>
+                  <span className="line-through font-semibold text-primary-700">
+                    ${regularPrice}
+                  </span>
+                </>
+              ) : (
+                <span className="text-2xl">${regularPrice}</span>
+              )}
+              <span className="">/night</span>
+            </p>
+            {numNights ? (
               <>
-                <span className="text-2xl">${regularPrice - discount}</span>
-                <span className="line-through font-semibold text-primary-700">
-                  ${regularPrice}
-                </span>
+                <p className="bg-accent-600 px-3 text-2xl">
+                  <span>&times;</span> <span>{numNights}</span>
+                </p>
+                <p>
+                  <span className="text-lg font-bold uppercase">Total</span>{' '}
+                  <span className="text-2xl font-semibold">${cabinPrice}</span>
+                </p>
               </>
-            ) : (
-              <span className="text-2xl">${regularPrice}</span>
-            )}
-            <span className="">/night</span>
-          </p>
-          {numNights ? (
-            <>
-              <p className="bg-accent-600 px-3 py-2 text-2xl">
-                <span>&times;</span> <span>{numNights}</span>
-              </p>
-              <p>
-                <span className="text-lg font-bold uppercase">Total</span>{' '}
-                <span className="text-2xl font-semibold">${cabinPrice}</span>
-              </p>
-            </>
+            ) : null}
+          </div>
+
+          {displayRange?.from || displayRange?.to ? (
+            <button
+              className="border border-primary-800 py-2 px-4 text-sm font-semibold"
+              onClick={resetRange}
+            >
+              Clear
+            </button>
           ) : null}
         </div>
-
-        {displayRange?.from || displayRange?.to ? (
-          <button
-            className="border border-primary-800 py-2 px-4 text-sm font-semibold"
-            onClick={resetRange}
-          >
-            Clear
-          </button>
-        ) : null}
       </div>
     </div>
   );
