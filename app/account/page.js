@@ -8,7 +8,7 @@ export default async function Page() {
   const session = await auth();
   const firstName = session?.user?.name.split(' ')[0];
   return (
-    <>
+    <div className="mt-4 lg1000:mt-0">
       <h2 className="font-semibold text-2xl text-accent-400 mb-4">
         Welcome, <span>{firstName}</span>
       </h2>
@@ -16,6 +16,6 @@ export default async function Page() {
         Use the Reservations section to manage bookings and the Guest Profile
         section to update your information.
       </p>
-    </>
+    </div>
   );
 }
