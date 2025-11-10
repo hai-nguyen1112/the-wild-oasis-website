@@ -13,13 +13,19 @@ export default async function Page() {
   const cabins = await getCabins();
 
   return (
-    <div className="grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center">
-      <div className="col-span-3">
-        <h1 className="text-4xl mb-10 text-accent-400 font-medium">
+    <div
+      className="grid gap-12 text-lg items-center
+        grid-cols-1                /* default: 1 col */
+        md:grid-cols-2            /* 2 cols on tablets */
+        lg:grid-cols-5            /* original 5 cols on desktop */
+        lg:gap-x-24 lg:gap-y-32"
+    >
+      <div className="lg:col-span-3">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl mb-6 sm:mb-8 text-accent-400 font-medium">
           Welcome to The Wild Oasis
         </h1>
 
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8 text-base sm:text-lg">
           <p>
             Where nature's beauty and comfortable living blend seamlessly.
             Hidden away in the heart of the Italian Dolomites, this is your
@@ -41,7 +47,7 @@ export default async function Page() {
         </div>
       </div>
 
-      <div className="col-span-2">
+      <div className="lg:col-span-2 order-first md:order-none">
         {/*The Image element from next.js will automatically load and analyze the image and therefore will make the image responsive automatically. In addition, we are also able to use attributes such as placeholder, quality... However, this only works for image that we can import into the component. In this case, it is the image about1 */}
         <Image
           src={about1}
@@ -51,7 +57,7 @@ export default async function Page() {
         />
       </div>
 
-      <div className="relative aspect-square col-span-2">
+      <div className="relative aspect-square w-full lg:col-span-2">
         {/*For the image that we cannot import into the component, we can still use the Image element from next.js but the image won't be analyzed by next.js beforehand and therefore it won't be responsive. To make it responsive we have to do it manually like this example. And, we won't be able to use attributes such as placeholder, quality... */}
         <Image
           src="/about-2.jpg"
@@ -61,12 +67,12 @@ export default async function Page() {
         />
       </div>
 
-      <div className="col-span-3">
-        <h1 className="text-4xl mb-10 text-accent-400 font-medium">
+      <div className="lg:col-span-3">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl mb-6 sm:mb-8 text-accent-400 font-medium">
           Managed by our family since 1962
         </h1>
 
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8 text-base sm:text-lg">
           <p>
             Since 1962, The Wild Oasis has been a cherished family-run retreat.
             Started by our grandparents, this haven has been nurtured with love
@@ -85,7 +91,11 @@ export default async function Page() {
           <div>
             <a
               href="/cabins"
-              className="inline-block mt-4 bg-accent-500 px-8 py-5 text-primary-800 text-lg font-semibold hover:bg-accent-600 transition-all"
+              className="inline-block mt-2 transition-all font-semibold
+                bg-accent-500 text-primary-800 hover:bg-accent-600
+                px-5 py-3 text-sm
+                sm:px-6 sm:py-4 sm:text-base
+                md:px-8 md:py-5 md:text-lg"
             >
               Explore our luxury cabins
             </a>
