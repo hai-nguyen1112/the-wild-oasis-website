@@ -5,8 +5,8 @@ export default async function Navigation() {
   const session = await auth();
 
   return (
-    <nav className="z-10 text-xl">
-      <ul className="flex gap-16 items-center">
+    <nav className="z-10 text-lg md724:text-xl">
+      <ul className="flex flex-wrap justify-center md724:justify-end gap-6 md724:gap-12 items-center">
         <li>
           <Link
             href="/cabins"
@@ -27,10 +27,10 @@ export default async function Navigation() {
           {session?.user?.image ? (
             <Link
               href="/account"
-              className="hover:text-accent-400 transition-colors flex items-center gap-3"
+              className="hover:text-accent-400 transition-colors flex items-center gap-2"
             >
               <img
-                className="h-8 rounded-full"
+                className="h-7 w-7 rounded-full"
                 src={session.user.image}
                 alt={session.user.name}
                 referrerPolicy="no-referrer"
