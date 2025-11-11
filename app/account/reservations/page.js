@@ -13,7 +13,7 @@ export default async function Page() {
 
   return (
     <div className="mt-4 lg1000:mt-0">
-      <h2 className="font-semibold text-2xl text-accent-400 mb-7">
+      <h2 className="font-semibold text-xl sm:text-2xl text-accent-400 mb-4">
         Your reservations
       </h2>
 
