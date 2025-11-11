@@ -11,9 +11,9 @@ export default function Layout({ children }) {
       {/* Toggle Button (only shows at <=1000px) */}
       <button
         onClick={() => setOpen(!open)}
-        className="lg1000:hidden fixed top-[110px] left-4 z-50 bg-primary-800 text-white p-2 rounded-md"
+        className="lg1000:hidden fixed top-[154px] md724:top-[110px] left-4 z-50 bg-accent-500 px-4 py-2 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
       >
-        {open ? <span>Collapse Sidebar</span> : <span>Expand Sidebar</span>}
+        {open ? <span>Hide Sidebar</span> : <span>Show Sidebar</span>}
       </button>
 
       <div
@@ -26,13 +26,13 @@ export default function Layout({ children }) {
         {/* Sidebar */}
         <aside
           className={`
-            bg-primary-900 h-full transition-all duration-300
+            bg-primary-950 h-full transition-all duration-300
             lg1000:translate-x-0 lg1000:static lg1000:w-auto
-            fixed top-[164px] left-0 z-40 w-64
+            fixed top-[208px] md724:top-[164px] left-0 z-40 w-64
             ${open ? 'translate-x-0' : '-translate-x-full'}
           `}
         >
-          <SideNavigation />
+          <SideNavigation setShowSidebar={setOpen} />
         </aside>
 
         {/* Page content */}
