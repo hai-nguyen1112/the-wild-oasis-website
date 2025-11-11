@@ -1,3 +1,16 @@
+## The Wild Oasis
+
+A full-stack cabin booking web application built with Next.js, React, and Supabase
+
+- Built the application using Next.js App Router, leveraging server side rendering, static site generation, incremental static regeneration, and dynamic routing for optimized performance and SEO.
+- Handled data mutations with Next.js Server Actions, React hooks, and revalidated caching, improving responsiveness and reducing client-side requests.
+- Managed shared UI state using React Context API, ensuring clean state flow and component scalability.
+- Designed and structured a PostgreSQL database with Supabase, including row-level security and relational data models.
+- Developed a fully responsive UI using Tailwind CSS, providing a seamless experience across mobile, tablet, and desktop devices.
+- Implemented secure authentication using NextAuth (Auth.js) with Google OAuth, enabling protected routes and user-specific booking data.
+- Integrated date selection, filtering, and availability logic to support real-time cabin booking interactions.
+- Optimized image handling and UI performance using Next.js Image component, suspense boundaries, and lazy loading.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
