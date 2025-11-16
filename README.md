@@ -1,6 +1,8 @@
 ## The Wild Oasis
 
-A full-stack cabin booking web application built with Next.js, React, and Supabase
+A full-stack cabin booking web application built with Next.js, React, and Supabase.
+
+Demo: https://the-wild-oasis-hai-nguyen.vercel.app/
 
 - Built the application using Next.js App Router, leveraging server side rendering, static site generation, incremental static regeneration, and dynamic routing for optimized performance and SEO.
 - Handled data mutations with Next.js Server Actions, React hooks, and revalidated caching, improving responsiveness and reducing client-side requests.
