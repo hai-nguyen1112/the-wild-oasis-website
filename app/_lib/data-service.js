@@ -143,10 +143,17 @@ export async function getSettings() {
 export async function getCountries() {
   try {
     const res = await fetch(
-      'https://restcountries.com/v3.1/all?fields=name,flag'
+      'https://restcountries.com/v3.1/all?fields=name,flags'
     );
-    const countries = await res.json();
-    return countries;
+
+    if (!res.ok) throw new Error('Bad response for restcountries.com');
+
+    const data = await res.json();
+
+    return data.map((c) => ({
+      name: c?.name?.common ?? '',
+      flag: c?.flags?.png ?? '',
+    }));
   } catch {
     throw new Error('Could not fetch countries');
   }
